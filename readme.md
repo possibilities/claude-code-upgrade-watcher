@@ -1,1 +1,1 @@
-# Commander.js Template
+# Claude Code Upgrade Watcher

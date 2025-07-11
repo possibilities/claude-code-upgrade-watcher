@@ -1,12 +1,12 @@
 {
-  "name": "commanderjs-template",
+  "name": "claude-code-upgrade-watcher",
   "version": "0.1.0",
   "author": "Mike Bannister <notimpossiblemike@gmail.com>",
   "license": "MIT",
-  "description": "CommanderJS Template",
+  "description": "Claude Code Upgrade Watcher",
   "type": "module",
   "bin": {
-    "commanderjs-template": "./dist/cli.js"
+    "claude-code-upgrade-watcher": "./dist/cli.js"
   },
   "scripts": {
     "build": "tsup",
