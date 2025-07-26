@@ -16,7 +16,7 @@ export class UpdateNotifier {
 
     try {
       await execAsync(
-        `notify-send "${title}" "${message}" --icon=software-update-available`,
+        `notify-send "${title}" "${message}" --icon=software-update-available --expire-time=0`,
       )
       this.notifiedVersions.add(latestVersion)
     } catch (error) {
@@ -29,7 +29,7 @@ export class UpdateNotifier {
 
     try {
       await execAsync(
-        `notify-send "${title}" "${errorMessage}" --icon=dialog-error`,
+        `notify-send "${title}" "${errorMessage}" --icon=dialog-error --expire-time=0`,
       )
     } catch (error) {
       console.error('Failed to send error notification:', error)
@@ -42,7 +42,7 @@ export class UpdateNotifier {
 
     try {
       await execAsync(
-        `notify-send "${title}" "${message}" --icon=dialog-information`,
+        `notify-send "${title}" "${message}" --icon=dialog-information --expire-time=0`,
       )
     } catch (error) {
       console.error('Failed to send notification:', error)
