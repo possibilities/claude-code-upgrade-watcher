@@ -2,6 +2,10 @@
   "name": "claude-code-upgrade-watcher",
   "version": "0.1.2",
   "author": "Mike Bannister <notimpossiblemike@gmail.com>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/possibilities/claude-code-upgrade-watcher.git"
+  },
   "license": "MIT",
   "description": "Claude Code Upgrade Watcher",
   "type": "module",
