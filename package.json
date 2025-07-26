@@ -1,6 +1,6 @@
 {
   "name": "claude-code-upgrade-watcher",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "author": "Mike Bannister <notimpossiblemike@gmail.com>",
   "license": "MIT",
   "description": "Claude Code Upgrade Watcher",
