@@ -25,18 +25,57 @@ async function main() {
           const versionInfo = await checkForUpdate()
 
           console.log(`Current version: ${versionInfo.current}`)
-          console.log(`Latest version: ${versionInfo.latest}`)
+          console.log(`Latest npm version: ${versionInfo.latest}`)
+          if (versionInfo.latestChangelog) {
+            console.log(
+              `Latest changelog version: ${versionInfo.latestChangelog}`,
+            )
+          }
+
+          const npmUpdate = versionInfo.updateAvailable
+          const changelogUpdate = versionInfo.changelogUpdateAvailable ?? false
+          const bothSameVersion =
+            npmUpdate &&
+            changelogUpdate &&
+            versionInfo.latest === versionInfo.latestChangelog
 
           if (
-            versionInfo.updateAvailable &&
-            !notifier.hasNotifiedVersion(versionInfo.latest)
+            bothSameVersion &&
+            !notifier.hasNotifiedVersion(versionInfo.latest, 'both')
           ) {
-            console.log('Update available! Sending notification...')
-            await notifier.notify(versionInfo.current, versionInfo.latest)
-          } else if (versionInfo.updateAvailable) {
             console.log(
-              'Update available, but already notified for this version',
+              'Update available on both npm and changelog! Sending notification...',
             )
+            await notifier.notifyBothUpdate(
+              versionInfo.current,
+              versionInfo.latest,
+            )
+          } else if (
+            npmUpdate &&
+            !notifier.hasNotifiedVersion(versionInfo.latest, 'npm')
+          ) {
+            console.log('Update available on npm! Sending notification...')
+            await notifier.notifyNpmUpdate(
+              versionInfo.current,
+              versionInfo.latest,
+            )
+          } else if (
+            changelogUpdate &&
+            versionInfo.latestChangelog &&
+            !notifier.hasNotifiedVersion(
+              versionInfo.latestChangelog,
+              'changelog',
+            )
+          ) {
+            console.log(
+              'Update available in changelog! Sending notification...',
+            )
+            await notifier.notifyChangelogUpdate(
+              versionInfo.current,
+              versionInfo.latestChangelog,
+            )
+          } else if (npmUpdate || changelogUpdate) {
+            console.log('Update available, but already notified')
           } else {
             console.log('No update available')
             if (isFirstCheck) {
