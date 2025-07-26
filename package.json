@@ -1,6 +1,6 @@
 {
   "name": "claude-code-upgrade-watcher",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "author": "Mike Bannister <notimpossiblemike@gmail.com>",
   "repository": {
     "type": "git",
